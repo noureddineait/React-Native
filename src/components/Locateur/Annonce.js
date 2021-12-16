@@ -14,9 +14,9 @@ const Annonce = (props) => {
   const editannonceHandler = () => {
     props.nav.navigate("AddAnnonce");
   }
-  const deleteannonceHandler = () => {
-    props.completeAnnonce(props.i);
-  }
+  // const deleteannonceHandler = () => {
+  //   props.completeAnnonce(props.i);
+  // }
 
   
 

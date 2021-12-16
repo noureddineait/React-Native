@@ -7,6 +7,7 @@ import { Card, ThemeContext, Button, Input, CheckBox } from 'react-native-elemen
 import { connect } from 'react-redux';
 import { getTenants } from '../actions/TenantsAction';
 import { getTenant } from '../actions/TenantAction';
+import { getRoomsPerLandlord } from '../actions/RoomsPerLandlordAction';
 const Login = (props) => {
     useEffect(() => {
         props.getLandlords();
@@ -40,6 +41,7 @@ const Login = (props) => {
                     props.landlords.map(el => {
                         if (el.username === userName && el.password === password) {
                             props.getLandlord(el.id);
+                            props.getRoomsPerLandlord(el.id);
 
                         }
                     });
@@ -158,6 +160,7 @@ const mapDispatchToProps = {
     getLandlords: getLandlords,
     getLandlord: getLandlord,
     getTenants: getTenants,
-    getTenant: getTenant
+    getTenant: getTenant,
+    getRoomsPerLandlord: getRoomsPerLandlord,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

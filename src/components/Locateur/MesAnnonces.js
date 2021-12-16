@@ -10,47 +10,47 @@ import { connect } from 'react-redux';
 
 const MesAnnonces = (props) => {
 // export default function MesAnnonces() {
-  const [annonce, setAnnonce] = useState();
-  const [annonceItems, setAnnonceItems] = useState([]);
-  const [visible, setVisible] = useState(false);
+  // const [annonce, setAnnonce] = useState();
+  // const [annonceItems, setAnnonceItems] = useState([]);
+  // const [visible, setVisible] = useState(false);
 
 
 
 
 
-  props.navigation.setOptions({
-    headerRight: () => (
+  // props.navigation.setOptions({
+  //   headerRight: () => (
       
-      <Icon name="logout" size={20}  color="#FFFFFF" onPress={() => props.navigation.replace('Login')} />
+  //     <Icon name="logout" size={20}  color="#FFFFFF" onPress={() => props.navigation.replace('Login')} />
       
-    ),
-  });
+  //   ),
+  // });
 
-  const addannonceHandler = () => {
-    props.navigation.navigate("AddAnnonce");
-  }
+  // const addannonceHandler = () => {
+  //   props.navigation.navigate("AddAnnonce");
+  // }
 
-  const clickHandler = () => {
-    props.navigation.navigate("Screen1");
-  }
-  const handleAddAnnonce = () => {
-    Keyboard.dismiss();
-    setAnnonceItems([...annonceItems, annonce])
-    setAnnonce(null);
+  // const clickHandler = () => {
+  //   props.navigation.navigate("Screen1");
+  // }
+  // const handleAddAnnonce = () => {
+  //   Keyboard.dismiss();
+  //   setAnnonceItems([...annonceItems, annonce])
+  //   setAnnonce(null);
     // setVisible(false);
-  }
+  // }
 
-  const completeAnnonce = (index) => {
-    let itemsCopy = [...annonceItems];
-    itemsCopy.splice(index, 1);
-    setAnnonceItems(itemsCopy)
+  // const completeAnnonce = (index) => {
+  //   let itemsCopy = [...annonceItems];
+  //   itemsCopy.splice(index, 1);
+  //   setAnnonceItems(itemsCopy)
     
-  }
+  // }
   
   
-    const toggleOverlay = () => {
-      setVisible(!visible);
-    };
+    // const toggleOverlay = () => {
+    //   setVisible(!visible);
+    // };
 
   return (
 
@@ -89,10 +89,10 @@ const MesAnnonces = (props) => {
             
             props.rooms_per_landlord.map((room) => {
               return (
-                <TouchableOpacity key={room.id}  onPress={completeAnnonce}>
-                  <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} completeAnnonce={completeAnnonce} /> 
+                <TouchableOpacity key={room.id}  >
+                  <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation}  /> 
                 </TouchableOpacity>
-                
+               
               )
             })
           }
@@ -120,7 +120,7 @@ const MesAnnonces = (props) => {
         title="Ajouter une annonce" 
         type="outline" 
         
-        onPress={addannonceHandler, handleAddAnnonce} 
+        // onPress={addannonceHandler} 
 
  /> 
      </View>

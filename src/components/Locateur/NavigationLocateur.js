@@ -18,9 +18,9 @@ const Tab = createBottomTabNavigator();
 
 const NavigationLocateur = (props) => {
   const {theme} = useContext(ThemeContext);
-  useEffect(() => {
-    props.getRoomsPerLandlord(props.landlord.id);
-}, []);
+//   useEffect(() => {
+//     props.getRoomsPerLandlord(props.landlord.id);
+// }, []);
   return (
     
       <Tab.Navigator
