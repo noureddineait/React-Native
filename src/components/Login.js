@@ -45,7 +45,7 @@ const Login = (props) => {
                     });
 
 
-                    props.navigation.replace("MesAnnonces")
+                    props.navigation.replace("HomeLocateur")
                 } else {
                     Alert.alert(
                         'Error',
@@ -64,7 +64,7 @@ const Login = (props) => {
 
                         }
                     });
-                    props.navigation.replace("HomeLocateur")
+                    props.navigation.replace("HomeLocataire")
                 } else {
                     Alert.alert(
                         'Error',
@@ -94,7 +94,7 @@ const Login = (props) => {
             </View>
             <CheckBox
                 containerStyle={{ backgroundColor: 'transparent', borderWidth: 0, marginTop: 0, marginBottom: 25, }}
-                title='Locataire ?'
+                title='Locateur ?'
                 checked={isChecked}
                 onPress={handleOnPress}
             />

@@ -8,11 +8,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {ThemeContext, Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 // import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import HomeLocataire from './components/HomeLocataire';
-import HomeLocateur from './components/HomeLocateur';
-import MesAnnonces from "./components/Locataire/MesAnnonces";
-import AddAnnonce from "./components/Locataire/AddAnnonce";
+
+import MesAnnonces from "./components/Locateur/MesAnnonces";
+import AddAnnonce from "./components/Locateur/AddAnnonce";
 import { TouchableOpacity } from 'react-native';
+import NavigationLocataire from './components/Locataire/NavigationLocataire';
+import NavigationLocateur from './components/Locateur/NavigationLocateur';
+import Test from './components/test';
 const App= () => {
 
 
@@ -23,11 +25,16 @@ const App= () => {
   return (
     <NavigationContainer>
       
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={
+          {tabBarActiveTintColor: theme.colors.primary,
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+          headerTintColor: 'white',}}>
       <Stack.Screen name="Login" component={Login} options={{headerLeft: () => null}}/>
       <Stack.Screen name="SignUp" component={SignUp} options={{headerLeft: () => null}} />
-      <Stack.Screen name="HomeLocataire" component={HomeLocataire} options={{ title: 'Welcome Locataire',headerLeft: null, }} />
-      <Stack.Screen name="HomeLocateur" component={HomeLocateur} options={{ title: 'Welcome Locateur',headerLeft: null, }} />
+      <Stack.Screen name="HomeLocataire" component={NavigationLocataire} options={{ title: 'Welcome Locataire',headerShown: false, }} />
+      <Stack.Screen name="HomeLocateur" component={NavigationLocateur} options={{ title: 'Welcome Locateur',headerShown: false, }} />
       <Stack.Screen
           name="MesAnnonces"
           component={MesAnnonces}

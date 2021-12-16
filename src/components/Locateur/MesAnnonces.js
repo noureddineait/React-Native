@@ -13,7 +13,7 @@ const MesAnnonces = ({ navigation }) => {
 
   navigation.setOptions({
     headerRight: () => (
-      <Icon name="logout" size={20} color="#000000" onPress={() => navigation.replace('Login')} />
+      <Icon name="logout" size={20} color="#fff" onPress={() => navigation.replace('Login')} />
     ),
   });
 
