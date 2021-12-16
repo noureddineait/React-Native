@@ -16,13 +16,14 @@ const HomeLocateur = props => {
   return (
     <View style={styles.view}>
 
-      <Text>Welcome to the HomeLocataire Page !</Text>
+      <Text>Welcome to the HomeLocateur Page !</Text>
 
-      {Object.entries(props.tenant).map(([key, value]) => {
+      {Object.entries(props.landlord).map(([key, value]) => {
         return (
-          <Text >{key} : {value}</Text>
+          <Text key={value}>{key} : {value}</Text>
         );
       })}
+
       <View style={{ margin: 15 }} >
 
         <Button onPress={() =>
@@ -49,8 +50,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     towns: state.towns,
-
-    tenant: state.tenant
+    tenant: state.tenant,
   };
 };
 

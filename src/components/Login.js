@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert , ScrollView, SafeAreaView} from 'react-native';
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getLandlords } from '../actions/LandlordsAction';
@@ -79,6 +79,8 @@ const Login = (props) => {
 
     return (
         <View style={styles.view}>
+        <SafeAreaView >
+            <ScrollView>
             <Text style={styles.titleText}>Nom d'utilisateur</Text>
             <Input leftIcon={{ type: 'font-awesome', name: 'user' }}
                 password placeholder="Nom d'utilisateur"
@@ -98,12 +100,15 @@ const Login = (props) => {
                 checked={isChecked}
                 onPress={handleOnPress}
             />
+            </ScrollView>
             <View style={styles.btn}><Button
                 onPress={() =>
                     connection()}
                 title="Login"
-            /></View>
-            <View >
+            />
+            
+            </View>
+            <View style={styles.searchSection}>
                 <Text  >New to the APP</Text>
                 <Button
                     onPress={() =>
@@ -113,18 +118,16 @@ const Login = (props) => {
                     type="clear"
                 />
             </View>
+        </SafeAreaView>
         </View>
     );
 
 };
 const styles = StyleSheet.create({
     view: {
-        margin: 12,
-        padding: 10,
+        margin: 20,
+        padding: 20,
 
-        justifyContent: 'center', //Centered horizontally
-        alignItems: 'center', //Centered vertically
-        flex: 1
     },
     searchSection: {
         margin: 15,
@@ -133,9 +136,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btn: {
-        height: 85,
+        height: 80,
         width: 150,
         margin: 10,
+        marginLeft:80,
         padding: 10,
     },
     titleText: {

@@ -111,7 +111,7 @@ const SignUp = (props) => {
                         title="Sign Up"
                     />
                 </View>
-                <View style={{ margin: 15 }} >
+                <View style={[styles.searchSection,{marginTop:15}]} >
                     <Text >Already have an account ?</Text>
                     <Button onPress={() =>
                         props.navigation.replace('Login')}

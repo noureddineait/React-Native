@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     towns: state.towns,
-    landlord: state.landlord,
+    landlord: state.landlord
   };
 };
 
