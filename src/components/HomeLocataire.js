@@ -12,25 +12,29 @@ const HomeLocataire = props => {
 
   }, []);
 
-
   return (
     <View style={styles.view}>
 
       <Text>Welcome to the HomeLocataire Page !</Text>
 
-      {Object.entries(props.landlord).map(([key, value]) => {
-        return (
-          <Text key={value}>{key} : {value}</Text>
-        );
-      })}
+      { 
+        Object.entries(props.landlord).map(([key, value]) => {
+            return (
+                <Text key={value}>{key} : {value}</Text>
+            );
+        })
+
+      }
 
       <View style={{ margin: 15 }} >
 
         <Button onPress={() =>
           props.navigation.replace('Login')}
+          title="Log Out" >
+        </Button>
 
-          title="Log Out" ></Button>
       </View>
+
     </View>
   );
 

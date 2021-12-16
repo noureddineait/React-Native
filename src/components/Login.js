@@ -45,7 +45,7 @@ const Login = (props) => {
                     });
 
 
-                    props.navigation.replace("HomeLocataire")
+                    props.navigation.replace("MesAnnonces")
                 } else {
                     Alert.alert(
                         'Error',
