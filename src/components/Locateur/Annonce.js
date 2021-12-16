@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import React, {Row} from 'react';
+import {View, Text, Image, Pressable } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles.js';
 import { useNavigation } from '@react-navigation/native';
@@ -29,19 +29,24 @@ const Annonce = (props) => {
       />
 
       {/* Bed & Bedroom  */}
+      <View style={ {flexDirection: "row", justifyContent: "space-between"} }>
       <Text style={styles.bedrooms}>
-        4 bed 2 bedroom
+        {props.capacity}
       </Text>
+      <Text style={styles.bedrooms}>
+        {props.town}
+      </Text>
+      </View>
 
       {/* Type & Description */}
       <Text style={styles.description} numberOfLines={2}>
-        Logement 5 1/2 centre ville Rimouski près de la cathedrale.
+        Chambre de: {props.landlordName}
       </Text>
 
       {/*  Old price & new price */}
       <Text style={styles.prices}>
-        <Text style={styles.oldPrice}>${34}</Text>
-        <Text style={styles.price}>  ${25} </Text>
+        {/* <Text style={styles.oldPrice}>${34}</Text> */}
+        <Text style={styles.price}>  ${props.price} </Text>
         / night
       </Text>
 
@@ -75,7 +80,7 @@ const Annonce = (props) => {
         titleStyle= {{
             color: "#D00000"
         }}
-        onPress={deleteannonceHandler}
+        // onPress={deleteannonceHandler}
        
        />
      </View>

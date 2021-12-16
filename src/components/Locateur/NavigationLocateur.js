@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useEffect} from 'react';
 
 
 
@@ -12,11 +12,15 @@ import {ThemeContext} from 'react-native-elements';
 import Test from "../test"
 import ProfilLocateur from './ProfilLocateur';
 import MesAnnonces from './MesAnnonces';
+import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
+import { connect } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
-const NavigationLocateur = () => {
+const NavigationLocateur = (props) => {
   const {theme} = useContext(ThemeContext);
-
+  useEffect(() => {
+    props.getRoomsPerLandlord(props.landlord.id);
+}, []);
   return (
     
       <Tab.Navigator
@@ -45,5 +49,15 @@ const NavigationLocateur = () => {
     
   );
 };
+const mapStateToProps = state => {
+  return {
+    landlord: state.landlord,
+  };
+};
 
-export default NavigationLocateur;
+const mapDispatchToProps = {
+  getRoomsPerLandlord: getRoomsPerLandlord,
+
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLocateur);
+

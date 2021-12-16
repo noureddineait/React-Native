@@ -1,28 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Annonce from './Annonce';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Header, Input, Button, Overlay } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 
-const MesAnnonces = ({ navigation }) => {
+
+
+const MesAnnonces = (props) => {
 // export default function MesAnnonces() {
   const [annonce, setAnnonce] = useState();
   const [annonceItems, setAnnonceItems] = useState([]);
   const [visible, setVisible] = useState(false);
 
-  navigation.setOptions({
+
+
+
+
+  props.navigation.setOptions({
     headerRight: () => (
-      <Icon name="logout" size={20} color="#fff" onPress={() => navigation.replace('Login')} />
+      
+      <Icon name="logout" size={20}  color="#FFFFFF" onPress={() => props.navigation.replace('Login')} />
+      
     ),
   });
 
   const addannonceHandler = () => {
-    navigation.navigate("AddAnnonce");
+    props.navigation.navigate("AddAnnonce");
   }
 
   const clickHandler = () => {
-    navigation.navigate("Screen1");
+    props.navigation.navigate("Screen1");
   }
   const handleAddAnnonce = () => {
     Keyboard.dismiss();
@@ -63,15 +72,27 @@ const MesAnnonces = ({ navigation }) => {
       
       {/* Today's Tasks */}
       <View style={styles.tasksWrapper}>
+        
         {/* <Text style={styles.sectionTitle}>Mes annonces:</Text> */}
         <View style={styles.items}>
+          
+        
           {/* This is where the tasks will go! */}
           {
-            annonceItems.map((item, index) => {
+            // annonceItems.map((item, index) => {
+            //   return (
+            //     <TouchableOpacity key={index}  onPress={completeAnnonce}>
+            //       <Annonce text={item} nav={props.navigation} completeAnnonce={completeAnnonce} i={index}/> 
+            //     </TouchableOpacity>
+            //   )
+            // })
+            
+            props.rooms_per_landlord.map((room) => {
               return (
-                <TouchableOpacity key={index}  onPress={completeAnnonce}>
-                  <Annonce text={item} nav={navigation} completeAnnonce={completeAnnonce} i={index}/> 
+                <TouchableOpacity key={room.id}  onPress={completeAnnonce}>
+                  <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} completeAnnonce={completeAnnonce} /> 
                 </TouchableOpacity>
+                
               )
             })
           }
@@ -108,7 +129,19 @@ const MesAnnonces = ({ navigation }) => {
   );
 }
 
-export default MesAnnonces;
+const mapStateToProps = state => {
+  return {
+    rooms_per_landlord: state.rooms_per_landlord,
+    landlord: state.landlord,
+  };
+};
+
+const mapDispatchToProps = {
+
+
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MesAnnonces);
+
 
 const styles = StyleSheet.create({
   container: {
