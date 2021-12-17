@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   prices: {
     fontSize: 18,
     marginVertical: 10,
+    textDecorationLine: 'underline',
   },
   oldPrice: {
     color: '#5b5b5b',
@@ -29,6 +30,12 @@ const styles = StyleSheet.create({
   },
   price: {
     fontWeight: 'bold',
+  },
+  underPic: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 8,
+    marginTop: 6,
   },
   totalPrice: {
     color: '#5b5b5b',

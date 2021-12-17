@@ -25,6 +25,11 @@ const NavigationLocateur = (props) => {
     
       <Tab.Navigator
         screenOptions={({route}) => ({
+          headerRight: () => (
+            
+            <Icon name="sign-in" size={25} style={{marginHorizontal: 10}}  color="#FFFFFF" onPress={() => props.navigation.replace('Login')} />
+            
+          ),
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 // CHANGER LES ICONES ET NOMS ATTENTION

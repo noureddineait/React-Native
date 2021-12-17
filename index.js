@@ -17,6 +17,7 @@ import { LandlordReducer } from './src/reducers/LandlordReducer';
 import { TenantsReducer } from './src/reducers/TenantsReducer';
 import { TenantReducer } from './src/reducers/TenantReducer';
 import { RoomsPerLandlordReducer } from './src/reducers/RoomsPerLandlordReducer';
+import { RoomsReducer } from './src/reducers/RoomsReducer';
 
 const reducers = combineReducers({
   towns: TownsReducer,
@@ -24,7 +25,8 @@ const reducers = combineReducers({
   landlord: LandlordReducer,
   tenants: TenantsReducer,
   tenant: TenantReducer,
-  rooms_per_landlord: RoomsPerLandlordReducer
+  rooms_per_landlord: RoomsPerLandlordReducer,
+  rooms: RoomsReducer,
 });
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));

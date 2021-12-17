@@ -4,11 +4,17 @@ import Annonce from './Annonce';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Header, Input, Button, Overlay } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 
 
 
 
 const MesAnnonces = (props) => {
+
+  useEffect(() => {
+    props.getRoomsPerLandlord(props.landlord.id);
+
+  }, []);
 // export default function MesAnnonces() {
   // const [annonce, setAnnonce] = useState();
   // const [annonceItems, setAnnonceItems] = useState([]);
@@ -26,9 +32,9 @@ const MesAnnonces = (props) => {
   //   ),
   // });
 
-  // const addannonceHandler = () => {
-  //   props.navigation.navigate("AddAnnonce");
-  // }
+  const addannonceHandler = () => {
+    props.navigation.navigate("AddAnnonce");
+  }
 
   // const clickHandler = () => {
   //   props.navigation.navigate("Screen1");
@@ -120,7 +126,7 @@ const MesAnnonces = (props) => {
         title="Ajouter une annonce" 
         type="outline" 
         
-        // onPress={addannonceHandler} 
+        onPress={addannonceHandler} 
 
  /> 
      </View>
@@ -137,7 +143,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-
+  getRoomsPerLandlord: getRoomsPerLandlord,
 
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MesAnnonces);

@@ -3,6 +3,7 @@ import {View, Text, Image, Pressable } from 'react-native';
 import { Button } from 'react-native-elements';
 import styles from './styles.js';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const days = 7;
@@ -29,29 +30,31 @@ const Annonce = (props) => {
       />
 
       {/* Bed & Bedroom  */}
-      <View style={ {flexDirection: "row", justifyContent: "space-between"} }>
-      <Text style={styles.bedrooms}>
-        {props.capacity}
-      </Text>
-      <Text style={styles.bedrooms}>
-        {props.town}
-      </Text>
+      <View style={styles.underPic }>
+        <Text style={styles.bedrooms}>
+          <Icon name="users" size={20}  />{"  "}{props.capacity} Personnes
+        </Text>
+        <Text style={styles.bedrooms}>
+          <Icon name="map-marker" size={20}  />
+          {"  "}
+          {props.town}
+        </Text>
       </View>
 
       {/* Type & Description */}
       <Text style={styles.description} numberOfLines={2}>
-        Chambre de: {props.landlordName}
+        Chambre pour {props.capacity} personnes à louer à {props.town}.
       </Text>
 
       {/*  Old price & new price */}
       <Text style={styles.prices}>
         {/* <Text style={styles.oldPrice}>${34}</Text> */}
-        <Text style={styles.price}>  ${props.price} </Text>
-        / night
+        <Text style={styles.price}>${props.price} </Text>
+        / nuit
       </Text>
 
       {/*  Total price */}
-      <Text style={styles.totalPrice}>${35 * days} total</Text>
+      {/* <Text style={styles.totalPrice}>${35 * days} total</Text> */}
       <View  style={styles.editBtn}>
       <Button 
         title="Modifier cette annonce" 
@@ -64,7 +67,7 @@ const Annonce = (props) => {
         titleStyle= {{
             color: "#FB8500"
         }}
-        onPress={editannonceHandler}
+        // onPress={editannonceHandler}
         
        />
        </View>
