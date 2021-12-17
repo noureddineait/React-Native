@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Annonce from './Annonce';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Header, Input, Button, Overlay } from 'react-native-elements';
+import { Header, Input, Button, Overlay, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 
@@ -99,9 +99,10 @@ const MesAnnonces = (props) => {
             
             props.rooms_per_landlord.map((room) => {
               return (
-                <TouchableOpacity key={room.id}  >
+                <Card key={room.id}  >
+
                   <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} updateData={updateData} /> 
-                </TouchableOpacity>
+                </Card>
                
               )
             })
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
   },
   tasksWrapper: {
     paddingTop: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   sectionTitle: {
     fontSize: 24,
