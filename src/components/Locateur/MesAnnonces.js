@@ -11,10 +11,14 @@ import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 
 const MesAnnonces = (props) => {
 
-  useEffect(() => {
-    props.getRoomsPerLandlord(props.landlord.id);
+  // useEffect(() => {
+  //   props.getRoomsPerLandlord(props.landlord.id);
 
-  }, []);
+  // }, []);
+
+    const updateData = () => {
+      props.getRoomsPerLandlord(props.landlord.id);
+  }
 // export default function MesAnnonces() {
   // const [annonce, setAnnonce] = useState();
   // const [annonceItems, setAnnonceItems] = useState([]);
@@ -33,7 +37,7 @@ const MesAnnonces = (props) => {
   // });
 
   const addannonceHandler = () => {
-    props.navigation.navigate("AddAnnonce");
+    props.navigation.navigate("AddAnnonce", {updateData: updateData,});
   }
 
   // const clickHandler = () => {
@@ -96,7 +100,7 @@ const MesAnnonces = (props) => {
             props.rooms_per_landlord.map((room) => {
               return (
                 <TouchableOpacity key={room.id}  >
-                  <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation}  /> 
+                  <Annonce id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} updateData={updateData} /> 
                 </TouchableOpacity>
                
               )

@@ -4,6 +4,11 @@ import { Button } from 'react-native-elements';
 import styles from './styles.js';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { deleteRoom } from '../../actions/RoomsAction';
+import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
+import { connect } from 'react-redux';
+
+
 
 
 const days = 7;
@@ -15,9 +20,11 @@ const Annonce = (props) => {
   const editannonceHandler = () => {
     props.nav.navigate("AddAnnonce");
   }
-  // const deleteannonceHandler = () => {
-  //   props.completeAnnonce(props.i);
-  // }
+  const deleteannonceHandler = () => {
+    props.deleteRoom(props.id);
+    props.updateData();
+    props.getRoomsPerLandlord(props.landlord.id);
+  }
 
   
 
@@ -83,7 +90,7 @@ const Annonce = (props) => {
         titleStyle= {{
             color: "#D00000"
         }}
-        // onPress={deleteannonceHandler}
+        onPress={deleteannonceHandler}
        
        />
      </View>
@@ -137,4 +144,16 @@ const Annonce = (props) => {
 //   },
 // });
 
-export default Annonce;
+const mapStateToProps = state => {
+  return {
+      rooms: state.rooms,
+      landlord: state.landlord,
+     
+  };
+};
+const mapDispatchToProps = {
+  deleteRoom: deleteRoom,
+  getRoomsPerLandlord: getRoomsPerLandlord,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Annonce);
+// export default Annonce;

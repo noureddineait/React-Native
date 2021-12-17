@@ -119,6 +119,12 @@ import { addRoom } from '../../actions/RoomsAction';
 import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 import { connect } from 'react-redux';
 import { addTenant } from '../actions/TenantsAction';
+import { LogBox } from 'react-native';
+
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 const AddAnnonce = (props) => {
 
@@ -137,6 +143,7 @@ const AddAnnonce = (props) => {
                     setCapacity("");
                     setPrice("");
                     props.getRoomsPerLandlord(props.landlord.id);
+                    props.route.params.updateData();
                     props.navigation.goBack();
  
     }

@@ -22,6 +22,17 @@ const baseUrl =
     };
   };
 
+  export const deleteRoom = (room_id) => {
+    return dispatch => {
+      axios
+        .delete(`${baseUrl}/${user_id}/room/${room_id}`)
+        .then(response => {
+          dispatch(getRooms());
+        });
+    };
+  };
+
+
   export const getRooms = () => {
     return dispatch => {
       axios.get(`${baseUrl}/${user_id}/rooms`).then(
