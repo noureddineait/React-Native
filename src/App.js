@@ -17,6 +17,7 @@ import { TouchableOpacity } from 'react-native';
 import NavigationLocataire from './components/Locataire/NavigationLocataire';
 import NavigationLocateur from './components/Locateur/NavigationLocateur';
 import Test from './components/test';
+import EditAnnonce from './components/Locateur/EditAnnonce';
 const App= () => {
 
 
@@ -44,6 +45,10 @@ const App= () => {
         <Stack.Screen
           name="AddAnnonce"
           component={AddAnnonce}
+        />
+        <Stack.Screen
+          name="EditAnnonce"
+          component={EditAnnonce}
         />
 
     </Stack.Navigator>

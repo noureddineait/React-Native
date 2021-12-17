@@ -152,17 +152,20 @@ const AddAnnonce = (props) => {
 
             <ScrollView style={styles.container}>
 
-                <Input leftIcon={{ type: 'font-awesome', name: 'user', color: "#517fa4" }}
+                <Input leftIcon={{ type: 'font-awesome', name: 'map-marker', color: "#517fa4" }}
                     password placeholder="Ville"
+                    leftIconContainerStyle= {{marginRight: 15, marginLeft: 6,}}
                     onChangeText={text => setTown(text)}></Input>
 
 
-                <Input leftIcon={{ type: 'font-awesome', name: 'envelope', color: "#517fa4" }}
+                <Input leftIcon={{ type: 'font-awesome', name: 'users', color: "#517fa4" }}
                     password placeholder="Capacité"
+                    leftIconContainerStyle= {{marginRight: 9,}}
                     onChangeText={text => setCapacity(text)}></Input>
                 
-                <Input leftIcon={{ type: 'font-awesome', name: 'envelope', color: "#517fa4" }}
+                <Input leftIcon={{ type: 'font-awesome', name: 'dollar', color: "#517fa4" }}
                     password placeholder="Prix par nuit"
+                    leftIconContainerStyle= {{marginRight: 15, marginLeft: 8,}}
                     onChangeText={text => setPrice(text)}></Input>
                 
 

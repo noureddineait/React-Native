@@ -32,6 +32,24 @@ const baseUrl =
     };
   };
 
+  export const updateRoom = (room_id, town, capacity, price) => {
+
+    return dispatch => {
+      axios
+        .put(`${baseUrl}/${user_id}/room/${room_id}`, {
+            
+            town: town,
+            // landlord: 192,
+            capacity: capacity,
+            price: price,
+
+        })
+        .then(response => {
+          dispatch(getRooms());
+        });
+    };
+  };
+
 
   export const getRooms = () => {
     return dispatch => {

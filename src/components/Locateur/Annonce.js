@@ -18,7 +18,7 @@ const Annonce = (props) => {
   // const post = props.post;
 
   const editannonceHandler = () => {
-    props.nav.navigate("AddAnnonce");
+    props.nav.navigate("EditAnnonce", {updateData: props.updateData, id: props.id, });
   }
   const deleteannonceHandler = () => {
     props.deleteRoom(props.id);
@@ -74,7 +74,7 @@ const Annonce = (props) => {
         titleStyle= {{
             color: "#FB8500"
         }}
-        // onPress={editannonceHandler}
+        onPress={editannonceHandler}
         
        />
        </View>
