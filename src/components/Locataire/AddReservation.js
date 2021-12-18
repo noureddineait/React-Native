@@ -29,7 +29,11 @@ const AddReservation = props => {
   };
   return (
       <View>
-    <SafeAreaView style={styles.view}>
+    <SafeAreaView style={styles.view} contentContainerStyle={{
+          flexGrow: 1
+        }}
+        keyboardShouldPersistTaps='handled'
+      >
 
       <ScrollView style={styles.container}>
       <Image style={styles.image} source={{ uri: 'https://canaguide.ca/datas/google-photo/3c8af68f52a3f7712aa42b70aee737ee-Auberge-Centre-Ville-Rimouski-Rimouski-QC-Canada-CanaGuide.jpg',}}

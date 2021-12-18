@@ -52,6 +52,7 @@ const AnnonceT = props => {
       color: '#fff',
     }}
     onPress = {AddreservationHandler}
+
   />
 </View>
 
