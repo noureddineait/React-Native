@@ -17,10 +17,8 @@ LogBox.ignoreLogs ([
 const AddReservation = props => {
   const [in_date, setIn_date] = useState ('');
   const [out_date, setOut_date] = useState ('');
-
-
   const add = () => {
-    props.addReservation (in_date,out_date,room.price,room.capacity, props.landlord.id);
+    props.addReservation (in_date,out_date,props.room.price,props.room.capacity, props.landlord.id);
     setIn_date ('');
     setOut_date ('');
     props.getRoom(props.room.price);
@@ -30,38 +28,28 @@ const AddReservation = props => {
     props.navigation.goBack ();
   };
   return (
+      <View>
     <SafeAreaView style={styles.view}>
 
       <ScrollView style={styles.container}>
-        <label for="start">Date de début :</label>
-        <input 
+      <Image style={styles.image} source={{ uri: 'https://canaguide.ca/datas/google-photo/3c8af68f52a3f7712aa42b70aee737ee-Auberge-Centre-Ville-Rimouski-Rimouski-QC-Canada-CanaGuide.jpg',}}
+       />
+
+        <Text for="start">Date de début :</Text>
+        <Input 
         type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01" max="2025-12-31" 
-        onChangeText={text => setIn_date (text)}/>
-        <label for="start">Date de Fin :</label>
-        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01" max="2025-12-31"
-        onChangeText={text => setOut_date (text)}/>
-
-        <Input
-          leftIcon={{
-            type: 'font-awesome',
-            name: 'map-marker',
-            color: '#517fa4',
-          }}
-          password
-          placeholder="Ville"
-          leftIconContainerStyle={{marginRight: 15, marginLeft: 6}}
-          onChangeText={text => setTown (text)}
-        />
-
+        onChangeText={date => setIn_date (date)}/>
+        <Text for="start">Date de Fin :</Text>
+        <Input type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01" max="2025-12-31"
+        onChangeText={date => setOut_date (date)}/>
         <Input
           leftIcon={{type: 'font-awesome', name: 'users', color: '#517fa4'}}
           password
-          placeholder="Capacité"
+          placeholder="Nombre Personne"
           leftIconContainerStyle={{marginRight: 9}}
           onChangeText={text => setCapacity (text)}
         />
-
-        <Input
+        <Text
           leftIcon={{type: 'font-awesome', name: 'dollar', color: '#517fa4'}}
           password
           placeholder="Prix par nuit"
@@ -69,27 +57,18 @@ const AddReservation = props => {
           onChangeText={text => setPrice (text)}
         />
 
-        {/* <View style={{ marginRight: 50, marginLeft: 50 }}>
-                    <Button onPress={() => {
-                        add()
-                    }
-                    }
-
-                        title="Publier l'annonce"
-                    />
-                </View> */}
       </ScrollView>
       <View>
         <Button
-          title="Ajouter une annonce"
+          title="Reserver cette chambre"
           type="outline"
           onPress={() => {
             add ();
           }}
-          // onPress={addannonceHandler}
         />
       </View>
     </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create ({
