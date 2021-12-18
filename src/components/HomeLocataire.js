@@ -27,12 +27,11 @@ const HomeLocataire = props => {
       }
 
       <View style={{ margin: 15 }} >
-
         <Button onPress={() =>
           props.navigation.replace('Login')}
           title="Log Out" >
         </Button>
-
+        <Button onPress={() => props.navigation.replace ('Reservation')} title="Reservation" />;
       </View>
 
     </View>

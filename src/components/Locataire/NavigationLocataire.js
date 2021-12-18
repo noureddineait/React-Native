@@ -11,6 +11,7 @@ import {ThemeContext} from 'react-native-elements';
 
 import Test from "../test"
 import ProfilLocataire from './ProfilLocataire';
+import Annonces from './Annonces';
 const Tab = createBottomTabNavigator();
 
 const NavigationLocataire = (props) => {
@@ -43,7 +44,7 @@ const NavigationLocataire = (props) => {
         })}>
 
 {/* Changer le nom et Components ATTENTION*/} 
-        <Tab.Screen name="Home" component={Test} />
+        <Tab.Screen name="Home" component={Annonces} />
         <Tab.Screen name="Profil" component={ProfilLocataire} />
       </Tab.Navigator>
     
