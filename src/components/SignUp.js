@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput, ScrollView, SafeAreaView, Alert } fr
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { Card, ThemeContext, Button, Input, Overlay, CheckBox } from 'react-native-elements';
+import { Card, ThemeContext, Button, Input, Overlay, CheckBox,ButtonGroup } from 'react-native-elements';
 import { addLandlord } from '../actions/LandlordsAction';
 import { connect } from 'react-redux';
 import { addTenant } from '../actions/TenantsAction';
@@ -28,25 +28,34 @@ const SignUp = (props) => {
     const [userName, setUserName] = useState('');
     const [mailAddress, setmailAdress] = useState('');
     const [password, setPassword] = useState('');
+    const [firstName, setfirstName] = useState('');
+    const [lastName, setlastName] = useState('');
+    const [birthDay, setbirthDay] = useState('');
+    const [gender, setgender] = useState('');
+    const [index, setindex] = useState(0);
 
     const add = () => {
-        if (userName && mailAddress && password) {
+        if (userName && mailAddress && password && firstName && lastName && birthDay ) {
             if (isChecked) {
                 const foundAdress = props.landlords.some(el => el.mail_address === mailAddress);
                 const foundUser = props.landlords.some(el => el.username === userName);
 
                 if (!(foundUser || foundAdress)) {
-                    props.addLandlord(userName, mailAddress, password)
+                    
+                    props.addLandlord(userName, mailAddress, password, firstName, lastName, birthDay, gender)
                     setUserName('');
                     setmailAdress("");
                     setPassword("");
+                    setfirstName("");
+                    setlastName("");
+                    setbirthDay("");
+                    setgender("");
                     props.navigation.replace("Login");
                 }
                 else {
                     Alert.alert(
                         'Error',
                         'Adresse mail ou utilisateur deja utilisé',
-
                     )
                 }
             } else {
@@ -54,11 +63,15 @@ const SignUp = (props) => {
                 const foundUser = props.tenants.some(el => el.username === userName);
 
                 if (!(foundUser || foundAdress)) {
-                    props.addTenant(userName, mailAddress, password)
+                    props.addTenant(userName, mailAddress, password, firstName, lastName, birthDay, gender)
                     setUserName('');
                     setmailAdress("");
                     setPassword("");
-                    props.navigation.replace("Login");
+                    setfirstName("");
+                    setlastName("");
+                    setbirthDay("");
+                    setgender("");
+                    props.navigation.goBack();
                 }
                 else {
                     Alert.alert(
@@ -68,34 +81,57 @@ const SignUp = (props) => {
                     )
                 }
             }
-
-
-
-
         }
     }
+
+
     return (
         <SafeAreaView style={styles.view}>
 
             <ScrollView >
 
-                <Input leftIcon={{ type: 'font-awesome', name: 'user', color: "#517fa4" }}
+                <Input leftIcon={{ type: 'font-awesome', name: 'user-circle-o', color: "#517fa4" }}
                     password placeholder="Nom d'utilisateur"
+                    leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
                     onChangeText={text => setUserName(text)}></Input>
 
 
                 <Input leftIcon={{ type: 'font-awesome', name: 'envelope', color: "#517fa4" }}
                     password placeholder="Email"
+                    leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
                     onChangeText={text => setmailAdress(text)}></Input>
-
 
                 <View style={styles.searchSection}>
                     <Input secureTextEntry={state.password} leftIcon={{ type: 'font-awesome', name: 'lock', color: "#517fa4" }}
                         password placeholder="Mot de passe"
+                        leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
                         onChangeText={text => setPassword(text)}></Input>
                     <Icon name={state.icon} size={25} color='#517fa4' onPress={() => handleOnChange()} />
                 </View>
 
+                <Input leftIcon={{ type: 'font-awesome', name: 'user', color: "#517fa4" }}
+                    password placeholder="First Name"
+                    leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
+                    onChangeText={text => setfirstName(text)}></Input>
+
+                <Input leftIcon={{ type: 'font-awesome', name: 'user-plus', color: "#517fa4" }}
+                    password placeholder="Last Name"
+                    leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
+                    onChangeText={text => setlastName(text)}></Input>
+
+                <Input leftIcon={{ type: 'font-awesome', name: 'calendar-o', color: "#517fa4" }}
+                    password placeholder="Birth Date (aaaa-mm-jj)"
+                    leftIconContainerStyle={{ marginRight: 15, marginLeft: 6, }}
+                    onChangeText={text => setbirthDay(text)}></Input>
+
+                <ButtonGroup
+                    onPress={(value)=>{setindex(value);
+                    if(index===0){
+                        setgender("M")
+                    }else{setgender("F")}}}
+                    selectedIndex={index}
+                    buttons={["Male","Female"]}
+                     />
                 <CheckBox
                     containerStyle={{ backgroundColor: 'transparent', borderWidth: 0, marginTop: 0, marginBottom: 25, }}
                     title='Locataire ?'
@@ -111,10 +147,10 @@ const SignUp = (props) => {
                         title="Sign Up"
                     />
                 </View>
-                <View style={[styles.searchSection,{marginTop:15}]} >
+                <View style={[styles.searchSection, { marginTop: 15 }]} >
                     <Text >Already have an account ?</Text>
                     <Button onPress={() =>
-                        props.navigation.replace('Login')}
+                        props.navigation.goBack()}
 
                         title="Login" type="clear"></Button>
                 </View>

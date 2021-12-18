@@ -114,7 +114,7 @@ const Login = (props) => {
                 <Text  >New to the APP</Text>
                 <Button
                     onPress={() =>
-                        props.navigation.replace('SignUp')
+                        props.navigation.navigate('SignUp')
                     }
                     title="Create an account here !"
                     type="clear"

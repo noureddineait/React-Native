@@ -4,15 +4,15 @@ const user_id = "3b104c53-d0d2-4ec1-bbb2-8d106635c790"
 const baseUrl =
   "https://airbnb-clone-rest-api.herokuapp.com/api";
 
-export const addLandlord = (userName, mailAdress, password) => {
+export const addLandlord = (userName, mailAdress, password,firstName,lastName,birthDay,gender) => {
   return dispatch => {
     axios
       .post(`${baseUrl}/${user_id}/landlords`, {
-        first_name: "Noureddine",
-        last_name: "AITELHAJ",
+        first_name: firstName,
+        last_name: lastName,
         mail_address: mailAdress,
-        birth_date: "2021-12-10",
-        gender: "M",
+        birth_date: birthDay,
+        gender: gender,
         username: userName,
         benefits: 0,
         password: password

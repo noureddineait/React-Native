@@ -13,13 +13,18 @@ import Test from "../test"
 import ProfilLocataire from './ProfilLocataire';
 const Tab = createBottomTabNavigator();
 
-const NavigationLocataire = () => {
+const NavigationLocataire = (props) => {
   const {theme} = useContext(ThemeContext);
 
   return (
     
       <Tab.Navigator
         screenOptions={({route}) => ({
+          headerRight: () => (
+            
+            <Icon name="sign-out" size={25} style={{marginHorizontal: 10}}  color="#FFFFFF" onPress={() => props.navigation.replace('Login')} />
+            
+          ),
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 // CHANGER LES ICONES ET NOMS ATTENTION

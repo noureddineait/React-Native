@@ -19,9 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const NavigationLocateur = (props) => {
   const {theme} = useContext(ThemeContext);
-//   useEffect(() => {
-//     props.getRoomsPerLandlord(props.landlord.id);
-// }, []);
+
   return (
     
       <Tab.Navigator
@@ -33,7 +31,6 @@ const NavigationLocateur = (props) => {
           ),
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
-// CHANGER LES ICONES ET NOMS ATTENTION
             if (route.name === 'Mes Annonces') {
               iconName = 'home';
             } else if (route.name === 'Profil') {
@@ -50,8 +47,7 @@ const NavigationLocateur = (props) => {
           },
           headerTintColor: 'white',
         })}>
-
-{/* Changer le nom et Components ATTENTION*/} 
+ 
         <Tab.Screen name="Mes Annonces" component={MesAnnonces} />
         <Tab.Screen name="Mes Reservations" component={MesReservations} />
         <Tab.Screen name="Profil" component={ProfilLocateur} />

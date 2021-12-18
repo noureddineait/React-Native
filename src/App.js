@@ -18,6 +18,8 @@ import NavigationLocataire from './components/Locataire/NavigationLocataire';
 import NavigationLocateur from './components/Locateur/NavigationLocateur';
 import Test from './components/test';
 import EditAnnonce from './components/Locateur/EditAnnonce';
+import EditProfilLocateur from './components/Locateur/EditProfilLocateur';
+import EditProfilLocataire from './components/Locataire/EditProfilLocataire';
 const App= () => {
 
 
@@ -35,7 +37,7 @@ const App= () => {
           },
           headerTintColor: 'white',}}>
       <Stack.Screen name="Login" component={Login} options={{headerLeft: () => null}}/>
-      <Stack.Screen name="SignUp" component={SignUp} options={{headerLeft: () => null}} />
+      <Stack.Screen name="SignUp" component={SignUp}  />
       <Stack.Screen name="HomeLocataire" component={NavigationLocataire} options={{ title: 'Welcome Locataire',headerShown: false, }} />
       <Stack.Screen name="HomeLocateur" component={NavigationLocateur} options={{ title: 'Welcome Locateur',headerShown: false, }} />
       <Stack.Screen
@@ -50,13 +52,15 @@ const App= () => {
           name="EditAnnonce"
           component={EditAnnonce}
         />
+      <Stack.Screen name="EditProfileLocateur" component={EditProfilLocateur} options={{ title: 'Modifier Informations' }} /> 
+      <Stack.Screen name="EditProfileLocataire" component={EditProfilLocataire} options={{ title: 'Modifier Informations' }} /> 
+
 
     </Stack.Navigator>
-    {/* test */}
     </NavigationContainer>
   );
 };
 
-//3b104c53-d0d2-4ec1-bbb2-8d106635c790
+
 
 export default App;
