@@ -6,6 +6,7 @@ import { Header, Input, Button, Overlay, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 import { getReservationsPerLandlord } from '../../actions/ReservationsPerLandlordAction';
+import { getTenant } from '../../actions/TenantAction';
 
 
 
@@ -14,6 +15,7 @@ const MesReservations = (props) => {
 
     useEffect(() => {
     props.getReservationsPerLandlord(props.landlord.id);
+    
 
     }, []);
 //     const updateData = () => {
@@ -41,9 +43,14 @@ const MesReservations = (props) => {
           
           {
             props.reservations_per_landlord.map((reservation) => {
+                props.getTenant(reservation.tenant)
               return (
                 <Card key={reservation.room}  >
-                    <Text> this is a reservation ! {reservation.room} , {reservation.landlord} </Text>
+                    
+                        
+                        <Text> {props.tenant.username} a résérvé la chambre {reservation.room} , {reservation.landlord} </Text>
+
+                    
                   {/* <Reservation id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} updateData={updateData} />  */}
                 </Card>
                
@@ -63,11 +70,13 @@ const mapStateToProps = state => {
   return {
     reservations_per_landlord: state.reservations_per_landlord,
     landlord: state.landlord,
+    tenant: state.tenant,
   };
 };
 
 const mapDispatchToProps = {
   getReservationsPerLandlord: getReservationsPerLandlord,
+  getTenant: getTenant,
 
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MesReservations);
