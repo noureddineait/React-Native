@@ -11,6 +11,10 @@ import AnnonceT from './AnnonceT';
 
 const Annonces = (props) => {
 
+const AddreservationHandler = () => {
+  props.navigation.navigate ('AddReservation', {updateData: updateData});
+};
+
     return (
       <View style={styles.container}>
       <ScrollView

@@ -1,66 +1,75 @@
-import { View, Text, StyleSheet, TextInput, ScrollView, SafeAreaView, Alert } from 'react-native';
-import React, { useState } from 'react';
+import {View,Text,StyleSheet,TextInput,ScrollView,SafeAreaView,Alert} from 'react-native';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Card, ThemeContext, Button, Input, Overlay, CheckBox } from 'react-native-elements';
-import { addRoom } from '../../actions/RoomsAction';
-import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
-import { connect } from 'react-redux';
-import { addTenant } from '../actions/TenantsAction';
-import { LogBox } from 'react-native';
+import {Card,ThemeContext,Button,Input,Overlay,CheckBox} from 'react-native-elements';
+import {addRoom} from '../../actions/RoomsAction';
+import {getRoomsPerLandlord} from '../../actions/RoomsPerLandlordAction';
+import {connect} from 'react-redux';
+import {addTenant} from '../actions/TenantsAction';
+import {LogBox} from 'react-native';
+import { addReservation } from '../../actions/ReservationAction';
+import {getRoom}from '../../actions/RoomsAction';
 
-
-LogBox.ignoreLogs([
+LogBox.ignoreLogs ([
   'Non-serializable values were found in the navigation state',
 ]);
 
-const AddReservation = (props) => {
+const AddReservation = props => {
+  const [in_date, setIn_date] = useState ('');
+  const [out_date, setOut_date] = useState ('');
 
 
+  const add = () => {
+    props.addReservation (in_date,out_date,room.price,room.capacity, props.landlord.id);
+    setIn_date ('');
+    setOut_date ('');
+    props.getRoom(props.room.price);
+    props.getRoom (props.room.capacity);
+    props.getRoomsPerLandlord (props.landlord.id);
+    props.route.params.updateData ();
+    props.navigation.goBack ();
+  };
+  return (
+    <SafeAreaView style={styles.view}>
 
-    const [town, setTown] = useState('');
-    const [roomId, setRoom] = useState('');
-    const [landlordId, setLandlordId] = useState('');
-    const [tenantId, settenantId] = useState('');
-    const [capacity, setCapacity] = useState('');
-    const [price, setPrice] = useState('');
+      <ScrollView style={styles.container}>
+        <label for="start">Date de début :</label>
+        <input 
+        type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01" max="2025-12-31" 
+        onChangeText={text => setIn_date (text)}/>
+        <label for="start">Date de Fin :</label>
+        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01" max="2025-12-31"
+        onChangeText={text => setOut_date (text)}/>
 
-    const add = () => {
+        <Input
+          leftIcon={{
+            type: 'font-awesome',
+            name: 'map-marker',
+            color: '#517fa4',
+          }}
+          password
+          placeholder="Ville"
+          leftIconContainerStyle={{marginRight: 15, marginLeft: 6}}
+          onChangeText={text => setTown (text)}
+        />
 
-        props.AddReservation(town, props.room.id, props.landlord.id,props.tenant.id , capacity, price);
-                    setTown('');
-                    setRoom('');
-                    setLandlordId('');
-                    settenantId("");
-                    setCapacity("");
-                    setPrice("");
-                    props.getReservationPerTenant(props.Tenant.id);
-                    props.route.params.updateData();
-                    props.navigation.goBack();
- 
-    }
-    return (
-        <SafeAreaView style={styles.view}>
+        <Input
+          leftIcon={{type: 'font-awesome', name: 'users', color: '#517fa4'}}
+          password
+          placeholder="Capacité"
+          leftIconContainerStyle={{marginRight: 9}}
+          onChangeText={text => setCapacity (text)}
+        />
 
-            <ScrollView style={styles.container}>
+        <Input
+          leftIcon={{type: 'font-awesome', name: 'dollar', color: '#517fa4'}}
+          password
+          placeholder="Prix par nuit"
+          leftIconContainerStyle={{marginRight: 15, marginLeft: 8}}
+          onChangeText={text => setPrice (text)}
+        />
 
-                <Input leftIcon={{ type: 'font-awesome', name: 'map-marker', color: "#517fa4" }}
-                    password placeholder="Ville"
-                    leftIconContainerStyle= {{marginRight: 15, marginLeft: 6,}}
-                    onChangeText={text => setTown(text)}></Input>
-
-
-                <Input leftIcon={{ type: 'font-awesome', name: 'users', color: "#517fa4" }}
-                    password placeholder="Capacité"
-                    leftIconContainerStyle= {{marginRight: 9,}}
-                    onChangeText={text => setCapacity(text)}></Input>
-                
-                <Input leftIcon={{ type: 'font-awesome', name: 'dollar', color: "#517fa4" }}
-                    password placeholder="Prix par nuit"
-                    leftIconContainerStyle= {{marginRight: 15, marginLeft: 8,}}
-                    onChangeText={text => setPrice(text)}></Input>
-                
-
-                {/* <View style={{ marginRight: 50, marginLeft: 50 }}>
+        {/* <View style={{ marginRight: 50, marginLeft: 50 }}>
                     <Button onPress={() => {
                         add()
                     }
@@ -69,20 +78,62 @@ const AddReservation = (props) => {
                         title="Publier l'annonce"
                     />
                 </View> */}
-            </ScrollView>
-            <View >
-              <Button 
-                title="Ajouter une Reservation" 
-                type="outline" 
-                onPress={() => {
-                  add()
-                  }
-                }
-                // onPress={addannonceHandler} 
-
-              /> 
-            </View>
-        </SafeAreaView>
-    );
-
+      </ScrollView>
+      <View>
+        <Button
+          title="Ajouter une annonce"
+          type="outline"
+          onPress={() => {
+            add ();
+          }}
+          // onPress={addannonceHandler}
+        />
+      </View>
+    </SafeAreaView>
+  );
 };
+const styles = StyleSheet.create ({
+  view: {
+    flex: 1,
+    backgroundColor: '#E8EAED',
+    // margin: 12,
+    // padding: 10,
+    // flexDirection: 'column',
+
+    // justifyContent: 'center', //Centered horizontally
+    // alignItems: 'center', //Centered vertically
+    // flex: 1
+  },
+
+  container: {
+    paddingTop: 20,
+    paddingHorizontal: 45,
+  },
+  searchSection: {
+    marginLeft: 13,
+    marginRight: 25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btn: {
+    height: 85,
+    width: 150,
+    margin: 5,
+    padding: 10,
+  },
+
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+const mapStateToProps = state => {
+  return {
+    reservation: state.reservation,
+  };
+};
+const mapDispatchToProps = {
+  addReservation: addReservation,
+};
+export default connect (mapStateToProps, mapDispatchToProps) (AddReservation);

@@ -8,8 +8,9 @@ import {getRooms} from '../../actions/RoomsPerLandlordAction';
 import {connect} from 'react-redux';
 
 const AnnonceT = props => {
-    const Addreservation = props =>{
-        
+    const AddreservationHandler = props =>{
+        props.nav.navigate ('AddReservation', {updateData: props.updateData,id: props.id});
+
     }
   return (
       <View>
@@ -30,7 +31,7 @@ const AnnonceT = props => {
   </Text>
 </View>
 <Text style={styles.description} numberOfLines={2}>
-  Chambre pour {props.capacity} personnes à louer à {props.town}.
+  Logement pour {props.capacity} personnes à louer à {props.town}.
 </Text>
 <Text style={styles.prices}>
   {/* <Text style={styles.oldPrice}>${34}</Text> */}
@@ -42,13 +43,15 @@ const AnnonceT = props => {
     title="Reserver"
     type="outline"
     buttonStyle={{
-      borderColor: '#FB8500',
+      borderColor: '#cc3300',
       borderRadius: 6,
       borderWidth: 1,
+      backgroundColor:'#e63900',
     }}
     titleStyle={{
-      color: '#FB8500',
+      color: '#fff',
     }}
+    onPress = {AddreservationHandler}
   />
 </View>
 
