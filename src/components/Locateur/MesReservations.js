@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { getRoomsPerLandlord } from '../../actions/RoomsPerLandlordAction';
 import { getReservationsPerLandlord } from '../../actions/ReservationsPerLandlordAction';
 import { getTenant } from '../../actions/TenantAction';
+import { getRoom } from '../../actions/RoomAction';
 
 
 
@@ -43,15 +44,23 @@ const MesReservations = (props) => {
           
           {
             props.reservations_per_landlord.map((reservation) => {
-                props.getTenant(reservation.tenant)
+                props.getTenant(reservation.tenant);
+                props.getRoom(reservation.room);
               return (
                 <Card key={reservation.room}  >
-                    
-                        
-                        <Text> {props.tenant.username} a résérvé la chambre {reservation.room} , {reservation.landlord} </Text>
-
-                    
-                  {/* <Reservation id={room.id} town={room.town} landlordName={props.landlord.username} capacity={room.capacity} price={room.price} nav={props.navigation} updateData={updateData} />  */}
+                        {/* <Text> {props.tenant.username} a résérvé la chambre {reservation.room} , {reservation.landlord} </Text> */}
+                  <Reservation 
+                  
+                    town={props.room.town} 
+                    tenantUsername={props.tenant.username}
+                    nbrPersons={reservation.nbr_persons}
+                    inDate={reservation.in_date}
+                    outDate={reservation.out_date}
+                    prixTotal={reservation.total_price}
+                  
+                  
+                  /> 
+                
                 </Card>
                
               )
@@ -71,12 +80,14 @@ const mapStateToProps = state => {
     reservations_per_landlord: state.reservations_per_landlord,
     landlord: state.landlord,
     tenant: state.tenant,
+    room: state.room,
   };
 };
 
 const mapDispatchToProps = {
   getReservationsPerLandlord: getReservationsPerLandlord,
   getTenant: getTenant,
+  getRoom: getRoom,
 
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MesReservations);
