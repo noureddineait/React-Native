@@ -138,7 +138,9 @@ const SignUp = (props) => {
                     checked={isChecked}
                     onPress={handleOnPress}
                 />
-                <View style={{ marginRight: 50, marginLeft: 50 }}>
+                </ScrollView>
+                <View >
+                <View >
                     <Button onPress={() => {
                         add()
                     }
@@ -147,14 +149,15 @@ const SignUp = (props) => {
                         title="Sign Up"
                     />
                 </View>
-                <View style={[styles.searchSection, { marginTop: 15 }]} >
+                <View style={[styles.searchSection, ]} >
                     <Text >Already have an account ?</Text>
                     <Button onPress={() =>
                         props.navigation.goBack()}
 
                         title="Login" type="clear"></Button>
                 </View>
-            </ScrollView>
+                </View>
+            
         </SafeAreaView>
     );
 
@@ -168,6 +171,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center', //Centered horizontally
         alignItems: 'center', //Centered vertically
         flex: 1
+    },
+    bottomView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     searchSection: {
         marginLeft: 13,

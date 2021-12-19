@@ -19,51 +19,57 @@ const ProfilLocataire = props => {
 
             <SafeAreaView style={styles.container}>
             <ScrollView>
-            <View style={styles.userInfoSection}>
-                    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+            
+                    <View style={{ flexDirection: 'row', marginTop: 15, marginHorizontal: 20, }}>
                         <View style={{ flexDirection: 'row', marginTop: 15, marginLeft: 20, marginRight: 20, borderRadius: 40, overflow: 'hidden', }}>
                             <Avatar
                                 source={{
                                     uri: 'https://static.wikia.nocookie.net/valorant/images/7/74/Sage_icon.png/revision/latest/scale-to-width-down/250?cb=20201128234057',
                                 }}
-                                size={80}
+                                size={100}
                             />
                         </View>
                         <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center', }}>
                             <Text style={[styles.title, {
                                 marginTop: 15,
                                 marginBottom: 5,
+                                fontSize: 30,
+                                
                             }]}>{props.tenant.username}</Text>
                             <Text style={styles.caption}>{props.tenant.mail_address}</Text>
                         </View>
 
                     </View>
-                </View>
+                
                 <View style={styles.infoBoxWrapper}>
                     <View style={[styles.infoBox, {
                         borderRightColor: '#dddddd',
-                        borderRightWidth: 1
+                        borderRightWidth: 1,
+                        marginTop: 7,
                     }]}>
+                        <Text style={{fontSize: 18,}}>Balance</Text>
+                        <View style={styles.row}>
                         <Text style={[styles.title, {
-                                marginBottom: 5,
+                                marginRight: 20,
                             }]}>{props.tenant.balance} $</Text>
-                        <Text>Balance</Text>
+                        
                         <Button title="+"
                         buttonStyle={{
-                            marginTop:10,
+                            marginTop:3,
 
                             borderRadius: 6,
                             borderWidth: 1,
-                            height:40,
+                            height:30,
                             width:30,
                             padding:1
 
                             }}
                             onPress={balanceUpdateHandler}
                             ></Button>
+                            </View>
                     </View>
                 </View>
-                <View >
+                <View style={styles.corps}>
 
                 <Text style={[styles.title, {
                                 marginTop: 15,
@@ -124,24 +130,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     caption: {
-        fontSize: 14,
-        lineHeight: 14,
+        fontSize: 20,
+        lineHeight: 20,
         fontWeight: '500',
     },
+    row: {
+        flex: 1,
+        flexDirection: "row",
+        marginTop: 7,
+        
+    },
     infoBoxWrapper: {
+        
+        alignItems: 'center',
         borderBottomColor: '#dddddd',
         borderBottomWidth: 1,
         borderTopColor: '#dddddd',
         borderTopWidth: 1,
         flexDirection: 'row',
-        height: 150,
+        height: 90,
         marginTop:15,
         marginBottom:15,
       },
       infoBox: {
+
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+      },
+      corps: {
+        marginHorizontal: 40,
       },
 })
 

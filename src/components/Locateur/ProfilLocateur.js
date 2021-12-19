@@ -18,8 +18,8 @@ const ProfilLocateur = props => {
 
             <SafeAreaView style={styles.container}>
 
-                <View style={styles.userInfoSection}>
-                    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                
+                    <View style={{ flexDirection: 'row', marginTop: 15, marginHorizontal: 20, }}>
                         <View style={{ flexDirection: 'row', marginTop: 15, marginLeft: 20, marginRight: 20, borderRadius: 40, overflow: 'hidden', }}>
                             <Avatar
                                 source={{
@@ -32,26 +32,27 @@ const ProfilLocateur = props => {
                             <Text style={[styles.title, {
                                 marginTop: 15,
                                 marginBottom: 5,
+                                fontSize: 30,
                             }]}>{props.landlord.username}</Text>
                             <Text style={styles.caption}>{props.landlord.mail_address}</Text>
                         </View>
 
                     </View>
-                </View>
+                
                 <View style={styles.infoBoxWrapper}>
                     <View style={[styles.infoBox, {
                         borderRightColor: '#dddddd',
                         borderRightWidth: 1
                     }]}>
                         <Text style={[styles.title, {
-                            marginTop: 15,
+                            
                             marginBottom: 5,
                         }]}>{props.landlord.benefits}</Text>
-                        <Text>Benefits</Text>
+                        <Text style={{fontSize: 18,}}>Benefits</Text>
                     </View>
                 </View>
                 <ScrollView>
-                    <View >
+                    <View style={styles.corps}>
                         <Text style={[styles.title, {
                             marginTop: 15,
 
@@ -116,8 +117,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     caption: {
-        fontSize: 14,
-        lineHeight: 14,
+        fontSize: 20,
+        lineHeight: 20,
         fontWeight: '500',
     },
     infoBoxWrapper: {
@@ -135,6 +136,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    corps: {
+        marginHorizontal: 40,
+      },
 })
 
 const mapStateToProps = state => {

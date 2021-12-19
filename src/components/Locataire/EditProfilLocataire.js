@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, Alert } from 'react-n
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { Card, ThemeContext, Button, Input, Overlay, Avatar } from 'react-native-elements';
+import { Card, ThemeContext, Button, Input, Overlay, Avatar, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { updateTenant } from '../../actions/TenantAction';
 const EditProfilLocataire = props => {
@@ -14,7 +14,7 @@ const EditProfilLocataire = props => {
     const [username, setusername] = useState(props.tenant.username);
     const [password, setpassword] = useState(props.tenant.password);
     let _index;
-    if(props.landlord.gender==="M"){
+    if(props.tenant.gender==="M"){
         _index=0;
     }else(_index=1)
     const [index, setindex] = useState(_index);
