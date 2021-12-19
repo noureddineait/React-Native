@@ -8,10 +8,10 @@ import {getRooms} from '../../actions/RoomsPerLandlordAction';
 import {connect} from 'react-redux';
 
 const AnnonceT = props => {
-    const AddreservationHandler = props =>{
-        props.nav.navigate ('AddReservation', {updateData: props.updateData,id: props.id});
-
+    const AddreservationHandler = () =>{
+        props.nav.navigate ("AddReservation", {id: props.id, capacity:props.capacity, price:props.price})
     }
+
   return (
       <View>
     <Image
@@ -38,6 +38,7 @@ const AnnonceT = props => {
   <Text style={styles.price}>${props.price} </Text>
   / nuit
 </Text>
+
 <View style={styles.editBtn}>
   <Button
     title="Reserver"
@@ -52,6 +53,7 @@ const AnnonceT = props => {
       color: '#fff',
     }}
     onPress = {AddreservationHandler}
+    
 
   />
 </View>
