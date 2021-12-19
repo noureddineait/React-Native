@@ -35,7 +35,6 @@ const MesAnnonces = (props) => {
       
   //   ),
   // });
-
   const addannonceHandler = () => {
     props.navigation.navigate("AddAnnonce", {updateData: updateData,});
   }

@@ -10,15 +10,12 @@ import {LogBox} from 'react-native';
 import { addReservation } from '../../actions/ReservationAction';
 import {getRoom}from '../../actions/RoomsAction';
 
-LogBox.ignoreLogs ([
-  'Non-serializable values were found in the navigation state',
-]);
 
-const AddReservation = props => {
+const AddReservation = (props) => {
   const [in_date, setIn_date] = useState ('');
   const [out_date, setOut_date] = useState ('');
   const add = () => {
-    props.addReservation (in_date,out_date,props.room.price,props.room.capacity, props.landlord.id);
+    props.AddreservationHandler (in_date,out_date,props.room.price,props.room.capacity, props.landlord.id);
     setIn_date ('');
     setOut_date ('');
     props.getRoom(props.room.price);
@@ -26,7 +23,7 @@ const AddReservation = props => {
     props.getRoomsPerLandlord (props.landlord.id);
     props.route.params.updateData ();
     props.navigation.goBack ();
-  };
+  }
   return (
       <View>
     <SafeAreaView style={styles.view} contentContainerStyle={{
@@ -49,14 +46,14 @@ const AddReservation = props => {
         <Input
           leftIcon={{type: 'font-awesome', name: 'users', color: '#517fa4'}}
           password
-          placeholder="Nombre Personne"
+          placeholder="Nombre de Personnes"
           leftIconContainerStyle={{marginRight: 9}}
           onChangeText={text => setCapacity (text)}
         />
         <Text
           leftIcon={{type: 'font-awesome', name: 'dollar', color: '#517fa4'}}
           password
-          placeholder="Prix par nuit"
+          placeholder="Détails sur prix"
           leftIconContainerStyle={{marginRight: 15, marginLeft: 8}}
           onChangeText={text => setPrice (text)}
         />
@@ -64,7 +61,7 @@ const AddReservation = props => {
       </ScrollView>
       <View>
         <Button
-          title="Reserver cette chambre"
+          title="Confirmer"
           type="outline"
           onPress={() => {
             add ();
@@ -114,9 +111,9 @@ const styles = StyleSheet.create ({
 const mapStateToProps = state => {
   return {
     reservation: state.reservation,
+    rooms: state.rooms,
   };
 };
 const mapDispatchToProps = {
-  addReservation: addReservation,
 };
 export default connect (mapStateToProps, mapDispatchToProps) (AddReservation);
