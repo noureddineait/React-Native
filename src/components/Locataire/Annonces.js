@@ -11,10 +11,6 @@ import AnnonceT from './AnnonceT';
 
 const Annonces = (props) => {
 
-const AddreservationHandler = () => {
-  props.navigation.navigate ('AddReservation', {updateData: updateData});
-};
-
     return (
       <View style={styles.container}>
       <ScrollView
@@ -29,7 +25,7 @@ const AddreservationHandler = () => {
             props.rooms.map((room) => {
               return (
                 <Card key={room.id}  >
-                  <AnnonceT id={room.id} town={room.town} landlordName={room.landlord} capacity={room.capacity} price={room.price}  /> 
+                  <AnnonceT nav={props.navigation} id={room.id} town={room.town} landlordName={room.landlord} capacity={room.capacity} price={room.price}  /> 
                 
                 </Card>
               )

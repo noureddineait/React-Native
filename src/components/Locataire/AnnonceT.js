@@ -9,10 +9,8 @@ import {connect} from 'react-redux';
 
 const AnnonceT = props => {
     const AddreservationHandler = () =>{
-        props.navigation.navigate ("AddReservation", {updateData: props.updateData,id: props.id})
+        props.nav.navigate ("AddReservation", {id: props.id, capacity:props.capacity, price:props.price})
     }
-    const updateData = () => {
-        props.getReservation()}
 
   return (
       <View>

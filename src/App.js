@@ -20,6 +20,7 @@ import Test from './components/test';
 import EditAnnonce from './components/Locateur/EditAnnonce';
 import EditProfilLocateur from './components/Locateur/EditProfilLocateur';
 import EditProfilLocataire from './components/Locataire/EditProfilLocataire';
+import AddReservation from './components/Locataire/AddReservation';
 const App= () => {
 
 
@@ -53,7 +54,11 @@ const App= () => {
           component={EditAnnonce}
         />
       <Stack.Screen name="EditProfileLocateur" component={EditProfilLocateur} options={{ title: 'Modifier Informations' }} /> 
-      <Stack.Screen name="EditProfileLocataire" component={EditProfilLocataire} options={{ title: 'Modifier Informations' }} /> 
+      <Stack.Screen name="EditProfileLocataire" component={EditProfilLocataire} options={{ title: 'Modifier Informations' }} />
+      <Stack.Screen
+  name="AddReservation" component={AddReservation} options={{title: 'Ajout des reservation'}}
+/>
+
 
 
     </Stack.Navigator>
