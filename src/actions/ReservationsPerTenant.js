@@ -6,7 +6,7 @@ const baseUrl = 'https://airbnb-clone-rest-api.herokuapp.com/api';
 export const getReservationsPerTenant = tenant_id => {
   return dispatch => {
     axios
-      .get (`${baseUrl}/${user_id}/reservationsByLandlord/${tenant_id}`)
+      .get (`${baseUrl}/${user_id}/reservationsByTenant/${tenant_id}`)
       .then (
         response => {
           dispatch ({

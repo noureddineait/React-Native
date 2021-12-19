@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 
 const AnnonceT = props => {
     const AddreservationHandler = () =>{
-        props.nav.navigate ("AddReservation", {id: props.id, capacity:props.capacity, price:props.price})
+      props.nav.navigate ("AddReservation", {id: props.id, landlord:props.landlordName , capacity:props.capacity, price:props.price})
     }
 
   return (
@@ -25,7 +25,7 @@ const AnnonceT = props => {
     <Icon name="users" size={20} />{'  '}{props.capacity} Personnes
   </Text>
   <Text style={styles.bedrooms}>
-    <Icon name="map-marker" size={20} />
+    <Icon name="home" size={20} />
     {'  '}
     {props.town}
   </Text>

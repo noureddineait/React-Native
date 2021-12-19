@@ -27,7 +27,6 @@ const Annonces = (props) => {
               return (
                 <Card key={room.id}  >
                   <AnnonceT nav={props.navigation} id={room.id} town={room.town} landlordName={room.landlord} capacity={room.capacity} price={room.price}  /> 
-                <Text>TEst</Text>
                 </Card>
               )
             })
