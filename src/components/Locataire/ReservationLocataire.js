@@ -4,7 +4,7 @@ import {Divider} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {StyleSheet} from 'react-native';
 
-const Reservation = props => {
+const ReservationLocataire = props => {
   return (
     <Pressable style={styles.container}>
       <View style={styles.underPic}>
@@ -24,8 +24,8 @@ const Reservation = props => {
 
       <View style={styles.CorpsTop}>
         <Text style={styles.Corps}>
-          <Text style={styles.Gras}>Réservée par: </Text>
-          {props.tenantUsername}
+          <Text style={styles.Gras}>Chambre de : </Text>
+          {props.landlordUsername}
         </Text>
         <View style={styles.CorpsView}>
           <Text style={styles.Corps}>
@@ -45,7 +45,7 @@ const Reservation = props => {
   );
 };
 
-export default Reservation;
+export default ReservationLocataire;
 
 const styles = StyleSheet.create({
   container: {

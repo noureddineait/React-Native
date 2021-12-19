@@ -1,8 +1,6 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ScrollView, Alert } from 'react-native';
 import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import { Card, ThemeContext, Button, Input, Overlay, Avatar, ButtonGroup } from 'react-native-elements';
+import { Button, Input, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { updateTenant } from '../../actions/TenantAction';
 const EditProfilLocataire = props => {

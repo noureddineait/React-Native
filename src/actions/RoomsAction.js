@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getRoomsPerLandlord } from './RoomsPerLandlordAction';
 
 const user_id = "3b104c53-d0d2-4ec1-bbb2-8d106635c790"
 const baseUrl =
@@ -17,7 +18,7 @@ const baseUrl =
 
         })
         .then(response => {
-          dispatch(getRooms());
+          dispatch(getRoomsPerLandlord(landlordId));
         });
     };
   };
@@ -27,7 +28,7 @@ const baseUrl =
       axios
         .delete(`${baseUrl}/${user_id}/room/${room_id}`)
         .then(response => {
-          dispatch(getRooms());
+          dispatch(getRoomsPerLandlord(landlordId));
         });
     };
   };
@@ -45,7 +46,7 @@ const baseUrl =
 
         })
         .then(response => {
-          dispatch(getRooms());
+          dispatch(getRoomsPerLandlord(landlordId));
         });
     };
   };

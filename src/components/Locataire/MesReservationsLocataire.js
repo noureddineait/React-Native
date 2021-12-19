@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import Reservation from './Reservation';
+import ReservationLocataire from './ReservationLocataire';
 import {Card} from 'react-native-elements';
 import {connect} from 'react-redux';
-import {getReservationsPerLandlord} from '../../actions/ReservationsPerLandlordAction';
 import {getTenants} from '../../actions/TenantsAction';
 import {getRooms} from '../../actions/RoomsAction';
+import { getReservationsPerTenant } from '../../actions/ReservationsPerTenantAction';
 
-const MesReservations = props => {
+const MesReservationsLocataire = props => {
   useEffect(() => {
-    props.getReservationsPerLandlord(props.landlord.id);
+    props.getReservationsPerTenant(props.tenant.id);
     props.getTenants();
     props.getRooms();
   }, []);
@@ -23,19 +23,19 @@ const MesReservations = props => {
         keyboardShouldPersistTaps="handled">
         <View style={styles.tasksWrapper}>
           <View style={styles.items}>
-            {props.reservations_per_landlord.map(reservation => {
+            {props.reservations_per_tenant.map(reservation => {
               return (
                 <Card key={reservation.id}>
 
-                  <Reservation
+                  <ReservationLocataire
                     town={
                       props.rooms.filter(
                         room => room.id === reservation.room,
                       )[0].town
                     }
-                    tenantUsername={
-                      props.tenants.filter(
-                        tenant => tenant.id === reservation.tenant,
+                    landlordUsername={
+                      props.landlords.filter(
+                        landlord => landlord.id === reservation.landlord,
                       )[0].username
                     }
                     nbrPersons={reservation.nbr_persons}
@@ -55,19 +55,19 @@ const MesReservations = props => {
 
 const mapStateToProps = state => {
   return {
-    reservations_per_landlord: state.reservations_per_landlord,
-    landlord: state.landlord,
-    tenants: state.tenants,
+    reservations_per_tenant: state.reservations_per_tenant,
+    tenant: state.tenant,
+    landlords: state.landlords,
     rooms: state.rooms,
   };
 };
 
 const mapDispatchToProps = {
-  getReservationsPerLandlord: getReservationsPerLandlord,
+  getReservationsPerTenant: getReservationsPerTenant,
   getTenants: getTenants,
   getRooms: getRooms,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(MesReservations);
+export default connect(mapStateToProps, mapDispatchToProps)(MesReservationsLocataire);
 
 const styles = StyleSheet.create({
   container: {

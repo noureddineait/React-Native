@@ -9,6 +9,7 @@ import { getTenants } from '../actions/TenantsAction';
 import { getTenant } from '../actions/TenantAction';
 import { getRoomsPerLandlord } from '../actions/RoomsPerLandlordAction';
 import { getRooms } from '../actions/RoomsAction';
+import { getReservationsPerLandlord } from '../actions/ReservationsPerLandlordAction';
 const Login = (props) => {
     useEffect(() => {
         props.getLandlords();
@@ -43,18 +44,15 @@ const Login = (props) => {
                         if (el.username === userName && el.password === password) {
                             props.getLandlord(el.id);
                             props.getRoomsPerLandlord(el.id);
-
+                            props.getReservationsPerLandlord(el.id);
+                            props.getRooms();
                         }
+                        props.navigation.replace("NavigationLocateur")
                     });
-
-
-                    props.navigation.replace("HomeLocateur")
                 } else {
-                
                     Alert.alert(
                         'Error',
                         `Nom d'utilisateur ou mot de passe incorrect`,
-
                     )
                 }
             }
@@ -68,8 +66,8 @@ const Login = (props) => {
                             props.getRooms();
 
                         }
+                        props.navigation.replace("NavigationLocataire")
                     });
-                    props.navigation.replace("HomeLocataire")
                 } else {
                     Alert.alert(
                         'Error',
@@ -176,5 +174,6 @@ const mapDispatchToProps = {
     getTenant: getTenant,
     getRoomsPerLandlord: getRoomsPerLandlord,
     getRooms : getRooms,
+    getReservationsPerLandlord:getReservationsPerLandlord,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

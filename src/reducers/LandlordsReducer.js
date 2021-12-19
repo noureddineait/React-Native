@@ -1,5 +1,3 @@
-
-
 export const LandlordsReducer = (landlords = [], action) => {
   switch (action.type) {
     case 'GET_LANDLORDS':

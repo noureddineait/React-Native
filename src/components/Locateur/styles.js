@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,24 +24,17 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     textDecorationLine: 'underline',
   },
-  oldPrice: {
-    color: '#5b5b5b',
-    textDecorationLine: 'line-through',
-  },
+
   price: {
     fontWeight: 'bold',
   },
   underPic: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginHorizontal: 8,
     marginTop: 6,
   },
-  totalPrice: {
-    color: '#5b5b5b',
-    textDecorationLine: 'underline',
-    marginBottom: 10,
-  },
+
   editBtn: {
     marginBottom: 5,
   },

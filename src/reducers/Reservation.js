@@ -1,4 +1,3 @@
-
 export const ReservationReducer = (towns = [], action) => {
   switch (action.type) {
     case 'GET_Reservation':
