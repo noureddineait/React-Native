@@ -50,7 +50,7 @@ const Login = (props) => {
 
                     props.navigation.replace("HomeLocateur")
                 } else {
-                    props.getRooms()
+                
                     Alert.alert(
                         'Error',
                         `Nom d'utilisateur ou mot de passe incorrect`,
