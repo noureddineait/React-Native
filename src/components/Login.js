@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getTenants } from '../actions/TenantsAction';
 import { getTenant } from '../actions/TenantAction';
 import { getRoomsPerLandlord } from '../actions/RoomsPerLandlordAction';
+import { getRooms } from '../actions/RoomsAction';
 const Login = (props) => {
     useEffect(() => {
         props.getLandlords();
@@ -49,6 +50,7 @@ const Login = (props) => {
 
                     props.navigation.replace("HomeLocateur")
                 } else {
+                    props.getRooms()
                     Alert.alert(
                         'Error',
                         `Nom d'utilisateur ou mot de passe incorrect`,
@@ -63,6 +65,7 @@ const Login = (props) => {
                     props.tenants.map(el => {
                         if (el.username === userName && el.password === password) {
                             props.getTenant(el.id);
+                            props.getRooms();
 
                         }
                     });
@@ -172,5 +175,6 @@ const mapDispatchToProps = {
     getTenants: getTenants,
     getTenant: getTenant,
     getRoomsPerLandlord: getRoomsPerLandlord,
+    getRooms : getRooms,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
